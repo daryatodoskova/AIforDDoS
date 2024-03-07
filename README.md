@@ -1,5 +1,5 @@
 # Utilisation de l'intelligence artificielle pour la détection d'attaques par déni de service
-The purpose of this project is to develop an artificial intelligence to classify possible DDoS attacks in a network.
+Le but de ce projet est de développer une intelligence artificielle pour classifier d'éventuelles attaques DDoS dans un réseau.
 
 !Meriam & Yazid - complétez ci-dessous ce qui manque côté réseau!
 
