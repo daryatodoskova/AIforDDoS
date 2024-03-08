@@ -1,3 +1,4 @@
+import snappi
 # create a new API instance where location points to controller.
 # this will use HTTP transport by default; in order to use gRPC instead,
 # one can pass additional kwarg `transport=snappi.Transport.GRPC`
