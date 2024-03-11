@@ -103,17 +103,17 @@ def csvgather(cap):
             except (UnboundLocalError, AttributeError):
                 pass
 
-def int_names(int_guids):
-    int_names = ['(unknown)' for _ in range(len(int_guids))]
+def interface_names(interface_guids):
+    interface_names = ['(unknown)' for _ in range(len(interface_guids))]
     reg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
     reg_key = winreg.OpenKey(reg, r'SYSTEM\CurrentControlSet\Control\Network\{4d36e972-e325-11ce-bfc1-08002be10318}')
-    for i in range(len(int_guids)):
+    for i in range(len(interface_guids)):
         try:
-            reg_subkey = winreg.OpenKey(reg_key, int_guids[i] + r'\Connection')
-            int_names[i] = winreg.QueryValueEx(reg_subkey, 'Name')[0]
+            reg_subkey = winreg.OpenKey(reg_key, interface_guids[i] + r'\Connection')
+            interface_names[i] = winreg.QueryValueEx(reg_subkey, 'Name')[0]
         except FileNotFoundError:
             pass
-    return int_names
+    return interface_names
 
 def LabelEncoding(data):
     columnsToEncode = list(data.select_dtypes(include=['category', 'object']))
@@ -132,8 +132,8 @@ def Load_model():
     print(loaded_model.loss_)
     return loaded_model
 
-def int_choice():
-    for i, value in enumerate(int_names(netifaces.interfaces())):
+def interface_choice():
+    for i, value in enumerate(interface_names(netifaces.interfaces())):
         print(i, value)
     print('\n')
     iface = input("Please select interface: ")
@@ -252,7 +252,7 @@ def LiveLabelEncoding(data):
 def main():
     
     # Choose network interface
-    cap = int_choice()
+    cap = interface_choice()
     
     # Gather packet information
     packet_info(cap)

@@ -156,7 +156,7 @@ def visualize_confusion_matrix(y_true, y_pred):
 
 def MLP():
     # Load dataset
-    data = final_01_df
+    #data = final_01_df
 
     # Preprocess dataset
     # data = preprocess_data(data)
@@ -176,7 +176,13 @@ def MLP():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
     # Initialize MLP classifier
-    mlp = MLPClassifier(hidden_layer_sizes=(100, 100), activation='relu', solver='sgd', max_iter=1000, alpha=0.0001, batch_size='auto', verbose=True)
+    mlp = MLPClassifier(hidden_layer_sizes=(100, 100), 
+                        activation='relu', 
+                        solver='sgd', 
+                        max_iter=1000, 
+                        alpha=0.0001, 
+                        batch_size='auto', 
+                        verbose=True)
 
     # Train MLP model
     mlp.fit(X_train, y_train)
