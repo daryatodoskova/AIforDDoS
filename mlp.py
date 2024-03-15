@@ -210,7 +210,6 @@ def csv_interval_gather(cap):
             end = time.time()
             if end - start >= 30:
                 break
-
             try:
                 if pkt.highest_layer != 'ARP':
                     ip = None

@@ -1,0 +1,106 @@
+import winreg
+import netifaces
+import pickle
+import csv
+import pyshark
+import time
+import datetime
+import pandas
+from sklearn.preprocessing import LabelEncoder
+
+
+
+# # Goes through each packet in capture
+# # displays various information about each packet
+# def packet_info(cap):
+#     start_time = time.time()
+#     try:
+#         i = 1
+#         for pkt in cap:
+#             i += 1
+#             try:
+#                 if pkt.highest_layer != 'ARP':
+#                     ip = None
+#                     ip_layer = get_ip_layer_name(pkt)
+#                     if ip_layer == 4:
+#                         ip = pkt.ip
+#                     elif ip_layer == 6:
+#                         ip = pkt.ipv6
+#                     print('Packet %d' % i)
+#                     print(pkt.highest_layer)
+#                     print(pkt.transport_layer)
+#                     print('Time', time.strftime("%Y-%m-%d %H:%M:%S"))
+#                     print('Layer: ipv%d' % get_ip_layer_name(pkt))
+#                     print('Source IP:', ip.src)
+#                     print('Destination IP:', ip.dst)
+#                     print('Length: ', pkt.length)
+#                     try:
+#                         print('Source Port', pkt[pkt.transport_layer].srcport)
+#                         print('Destination Port', pkt[pkt.transport_layer].dstport)
+#                     except AttributeError:
+#                         print('Source Port: ', 0)
+#                         print('Destination Port: ', 0)
+#                     print(i / (time.time() - start_time))
+#                     print('')
+#                 else:
+#                     arp = pkt.arp
+#                     print(pkt.highest_layer)
+#                     print(pkt.transport_layer)
+#                     print('Layer: ipv4')
+#                     print('Time', time.strftime("%Y-%m-%d %H:%M:%S"))
+#                     print('Source IP: ', arp.src_proto_ipv4)
+#                     print('Destination IP: ', arp.dst_proto_ipv4)
+#                     print('Length: ', pkt.length)
+#                     print('Source Port: ', 0)
+#                     print('Destination Port: ', 0)
+#                     print(i / (time.time() - start_time))
+#                     print()
+#             except (AttributeError, UnboundLocalError, TypeError):
+#                 pass
+#         return
+#     except KeyboardInterrupt:
+#         pass
+
+# creates/rewrites 'test.csv' file - writes header row - goes through packets, 
+# writing a row to the csv for each packet
+# def csvgather(cap):    
+#     start_time = time.time()
+#     with open('Data.csv', 'w', newline='') as csvfile:
+#         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+#         filewriter.writerow(['Highest Layer', 'Transport Layer', 'Source IP', 'Dest IP', 'Source Port', 'Dest Port',
+#                              'Packet Length', 'Packets/Time', 'target'])
+
+#         i = 0
+#         for pkt in cap:   #iterates through the packets captured from the network interface
+#             try:
+#                 if pkt.highest_layer != 'ARP':
+#                     ip = None
+#                     ip_layer = get_ip_layer_name(pkt)
+#                     if ip_layer == 4:
+#                         ip = pkt.ip
+#                     elif ip_layer == 6:
+#                         ip = pkt.ipv6
+#                     ipv = 0 if ip_layer == 4 else 1
+#                     transport_layer = pkt.transport_layer if pkt.transport_layer else 'None'
+
+#                     ipcat = 1 if ip.src not in allowed_IP else 0
+#                     target = 1 if ip.src not in allowed_IP else 0
+#                     srcport = pkt[pkt.transport_layer].srcport if pkt.transport_layer else 0
+#                     dstport = pkt[pkt.transport_layer].dstport if pkt.transport_layer else 0
+
+#                     filewriter.writerow([pkt.highest_layer, transport_layer, ip.src, ip.dst, srcport, dstport,
+#                                          pkt.length, i / (time.time() - start_time), target])
+#                     i += 1
+#                 else:
+#                     arp = pkt.arp
+#                     ipcat = 1 if arp.src_proto_ipv4 not in allowed_IP else 0
+#                     target = 1 if arp.src_proto_ipv4 not in allowed_IP else 0
+
+#                     filewriter.writerow([pkt.highest_layer, 'ipv4', ipcat, arp.dst_proto_ipv4, 0, 0,
+#                                          pkt.length, i / (time.time() - start_time), target])
+#                     i += 1
+#             except (UnboundLocalError, AttributeError):
+#                 pass
+
+
+
