@@ -7,3 +7,20 @@ Le but de ce projet est de développer une intelligence artificielle pour classi
 - Entraînement du réseau neuronal : Entraîne un MLP en utilisant les données collectées dans le fichier CSV.
 - Réseau neuronal en live : Utilise un MLP entraîné pour détecter les attaques DDoS en temps réel.
 
+## Requirements
+
+Pour exécuter ce projet, il vous faut les bibliothèques suivantes:
+
+- pandas
+- scikit-learn
+- matplotlib
+- numpy
+- pyshark
+- netifaces
+- python-winreg (for Windows only)
+
+Vous pouvez les installer avec:
+
+```bash
+pip install -r requirements.txt
+
