@@ -1,0 +1,6 @@
+matplotlib==3.2.2
+netifaces==0.11.0
+numpy==1.18.5
+pandas==1.0.5
+pyshark==0.6
+scikit_learn==0.23.1

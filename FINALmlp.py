@@ -151,19 +151,6 @@ def visualize_confusion_matrix(y_true, y_pred):
   plt.show()
 
 def MLP():
-    # Load dataset
-    #data = final_01_df
-
-    # Preprocess dataset
-    # data = preprocess_data(data)
-
-    # Encode categorical variables
-    # data = LabelEncoding(data)
-
-    # Split features and target variable
-    # X = data[['Highest Layer', 'Transport Layer', 'Source IP', 'Destination IP', 'Source Port', 'Dest Port',
-    #           'Packet Length', 'Packets/Time']]
-    # y = data['target']
 
     X = final_01_df.drop([' Label'], axis = 1)
     y = final_01_df[' Label']
