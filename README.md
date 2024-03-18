@@ -17,7 +17,6 @@ Pour exécuter ce projet, il vous faut les bibliothèques suivantes:
 - numpy
 - pyshark
 - netifaces
-- python-winreg (for Windows only)
 
 Vous pouvez les installer avec:
 
